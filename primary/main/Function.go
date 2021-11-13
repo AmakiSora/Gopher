@@ -43,6 +43,20 @@ func show(a int, b int, fun func(int, int) (string, int)) {
 	fmt.Println(fun(a, b))
 }
 
+//初始化函数
+func init() {
+	fmt.Println("初始化函数,在执行main前会调用")
+}
+
+//闭包,一个函数和与其相关的引用环境组合的一个整体,本质上依旧是一个匿名函数,只是这个函数引入了外界的变量
+func getSum() func(int) int {
+	sum := 0 //匿名函数引用的参数或变量会一直存在内存中(不可滥用)
+	return func(num int) int {
+		sum = sum + num
+		return sum
+	}
+}
+
 func main() {
 	result, sum := addition(1, 1)
 	fmt.Println(result)
@@ -61,9 +75,11 @@ func main() {
 	func(data int) {
 		fmt.Println("匿名函数调用", data)
 	}(100) //这里直接进行调用
-}
 
-//初始化函数
-func init() {
-	fmt.Println("初始化函数,在执行main前会调用")
+	//闭包
+	f := getSum()
+	fmt.Println(f(1))
+	fmt.Println(f(1))
+	fmt.Println(f(1))
+
 }
