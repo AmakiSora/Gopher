@@ -164,8 +164,13 @@ func main() {
 		  	对字符串采用%x或%X时（% x或% X）会给各打印的字节之间加空格；
 		'0'	使用0而不是空格填充，对于数值类型会把填充的0放在正负号后面；
 
-
-
 	*/
+
+	//自定义数据类型
+	type myInt int
+	var m myInt = 233
+	fmt.Println(m)
+	var m2 int = int(m) //要用类型转换才能赋值给其他数据类型
+	fmt.Println(m2)
 
 }
